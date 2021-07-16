@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+
+		<style>
+			html{     font-family: 'Roboto', sans-serif; }
+			p{line-height: 35px;}
+			.container{position: absolute; height: 100%; width: 100%;}
+			.content{max-width: 900px;margin: 0 auto;}
+			h1{text-align: center;}
+			.header{margin: 0 auto;width: 300px;}
+			#logo{width:100px;}
+			.body{margin: 100px 20px;}
+			#title{width: fit-content;padding: 10px 30px;background: #a66eff; color:#fff;margin: auto;border-radius: 15px; margin-bottom: 45px; font-size:45px;}
+			#pintro{font-size: 35px; text-align: center; margin-top:-35px;}
+			#descr{font-size:20px; margin-top:80px;}
+			.bold{font-weight: bolder;font-size:1.2em;}
+			.footer{height: 20%;font-size: 10px;font-weight: lighter;color: grey; text-align:center;}
+			.footer > p{text-align: center; padding-top: 20px;}
+			#social > a >i, #social > a { margin: 10px 4px; font-size:15px; text-decoration:none; color: black;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+                <div class="header">
+                    <div style="width: 100px;margin: 40px auto;">
+                        <img id="logo" src="https://raw.githubusercontent.com/luca-lc/HomeHub/master/assets/img/HomeHub.png" alt="HomeHub">
+                    </div>
+                    <h1 id="title">{{TITLE}}</h1>
+                </div>
+
+
+                <div class='body'>
+					<p id='pintro'>{{pinto}}
+						<span class='bold'>
+							{{brief}}
+						</span>
+					</p>
+					<p id="descr">
+						{{descr}}
+					</p>
+				</div>
+				<hr style="width: 70%;height: 1px;border-top: 1px solid lightgray !important;border: none;border-top-color: currentcolor;border-top-style: none;border-top-width: medium;">
+				<div class="footer">
+					<p>
+						Do not reply at this email. To contact the administrator write to this email <a href="mailto:lccanessa@gmail.com">lccanessa@gmail.com</a><br/>
+					</p>
+					<span id="social">
+						Get in touch with administrator<br/>
+						<a href="https://luca-lc.github.io/"><i class="fas fa-code"></i></a>
+						<a href="https://github.com/luca-lc/"><i class="fab fa-github"></i></a>
+						<a href="https://www.linkedin.com/in/luca-lc/"><i class="fab fa-linkedin"></i></a>
+						<a href="https://www.facebook.com/iamluca21/"><i class="fab fa-facebook"></i></a>
+						<a href="https://www.instagram.com/lucalc_lc/"><i class="fab fa-instagram"></i></a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
