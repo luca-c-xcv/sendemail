@@ -5,6 +5,7 @@ from controller.power import power
 class powerfailure( power ):
     __brief__ = None
     __descr__ = None
+    __perc__ = None
 
     def __init__(self):
         super().__init__()
@@ -25,7 +26,9 @@ class powerfailure( power ):
         out = "100%" #TODO
 
 
-        self.__descr__ = 'It seems that on <span class="bold">%s, %s %s %s at %s:%s </span>, the power went out at Luca\'s house. At that moment the percentage of the UPS battery of the server was %s'%(wday, day, month, year, hour, min, out)
+        self.__descr__ = '%s, %s %s %s at %s:%s'%(wday, day, month, year, hour, min)
+
+        self.__perc__ = '%s'%(out)
 
 
 
@@ -33,8 +36,13 @@ class powerfailure( power ):
     def getBrief(self):
         return str( self.__brief__ )
 
-    def getDescr(self):
+    def getTimeDescr(self):
         return str( self.__descr__ )
+
+    def getPercDescr(self):
+        return str( self.__perc__ )
+
+
 
 
 
