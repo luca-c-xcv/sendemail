@@ -1,5 +1,6 @@
-from jinja2 import Environment, PackageLoader, select_autoescape, Template
+from jinja2 import Environment, PackageLoader, select_autoescape, Template, FileSystemLoader
 from controller.powerfailure import powerfailure
+from controller.powerrestore import powerrestore
 from controller.sender import sender
 import sys
 import getopt
@@ -7,15 +8,18 @@ import getopt
 global configFile
 
 def powerRestore():
-    print( "restore" )
+    pr = powerrestore()  # create a powerfailure obj
+    env = Environment(loader=FileSystemLoader('templates'), autoescape=select_autoescape())  # create env for template
+    t = env.get_template("template.html")  # get email template
+    template = t.render(TITLE=pr.getTitle(), pinto=pr.getIntro(), brief=pr.getBrief(), timeDescr=pr.getTimeDescr(), percento=pr.getPercDescr(), pf=False, pr=True)  # template customisation
+    mail = sender("Warning: power is back")  # prepare to send email
+    mail.send(template)  # send email with template
 
 def powerFailure():
-    print( "failure" )
-    return
     pf = powerfailure() #create a powerfailure obj
-    env = Environment( loader=PackageLoader('sendemail', 'templates'), autoescape=select_autoescape( ) ) #create env for template
+    env = Environment( loader=FileSystemLoader('templates'), autoescape=select_autoescape( ) ) #create env for template
     t = env.get_template( "template.html" ) #get email template
-    template = t.render(TITLE=pf.getTitle(), pinto=pf.getIntro(), brief=pf.getBrief(), descr=pf.getDescr()) #template customisation
+    template = t.render(TITLE=pf.getTitle(), pinto=pf.getIntro(), brief=pf.getBrief(), timeDescr=pf.getTimeDescr(), percento=pf.getPercDescr(), pf=True, pr=False ) #template customisation
     mail = sender("Warning: power failure") #prepare to send email
     mail.send( template ) #send email with template
 
@@ -31,7 +35,6 @@ if __name__=='__main__':
     argv = sys.argv[1:]
     try:
         opts, args = getopt.getopt(argv, ':frT', ["power-failure", "power-restore", "test"])
-        print( opts )
     except getopt.GetoptError:
         print( "USAGE" )
         sys.exit(2)
