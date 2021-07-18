@@ -4,23 +4,26 @@ from controller.powerrestore import powerrestore
 from controller.sender import sender
 import sys
 import getopt
+import os
 
-global configFile
+app = sys.modules['__main__']
+CONFIG = os.path.dirname( app.__file__ )
 
-def powerRestore():
+
+def powerRestore( test ):
     pr = powerrestore()  # create a powerfailure obj
-    env = Environment(loader=FileSystemLoader('templates'), autoescape=select_autoescape())  # create env for template
+    env = Environment(loader=FileSystemLoader(DIRPATH + '/templates'), autoescape=select_autoescape())  # create env for template
     t = env.get_template("template.html")  # get email template
     template = t.render(TITLE=pr.getTitle(), pinto=pr.getIntro(), brief=pr.getBrief(), timeDescr=pr.getTimeDescr(), percento=pr.getPercDescr(), pf=False, pr=True)  # template customisation
-    mail = sender("Warning: power is back")  # prepare to send email
+    mail = sender( test, "Warning: power is back" )  # prepare to send email
     mail.send(template)  # send email with template
 
-def powerFailure():
+def powerFailure( test ):
     pf = powerfailure() #create a powerfailure obj
-    env = Environment( loader=FileSystemLoader('templates'), autoescape=select_autoescape( ) ) #create env for template
+    env = Environment( loader=FileSystemLoader(DIRPATH + '/templates'), autoescape=select_autoescape( ) ) #create env for template
     t = env.get_template( "template.html" ) #get email template
     template = t.render(TITLE=pf.getTitle(), pinto=pf.getIntro(), brief=pf.getBrief(), timeDescr=pf.getTimeDescr(), percento=pf.getPercDescr(), pf=True, pr=False ) #template customisation
-    mail = sender("Warning: power failure") #prepare to send email
+    mail = sender( test, "Warning: power failure" ) #prepare to send email
     mail.send( template ) #send email with template
 
 
@@ -54,11 +57,8 @@ if __name__=='__main__':
     if( pr and pf ):
         print( 'Usage' )
         sys.exit(2)
-    elif( test ):
-        print("Insert testing config file path")
-        file = input()
 
     if( pf ):
-        powerFailure()
+        powerFailure( test )
     elif( pr ):
-        powerRestore()
+        powerRestore( test )

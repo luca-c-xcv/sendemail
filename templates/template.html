@@ -34,26 +34,12 @@
                     <h1 id="title">{{TITLE}}</h1>
                 </div>
 
+				{% if pf is defined or pr is defined %}
+					{% include 'powerbody.html' %}
+				{% endif %}
 
-                <div class='body'>
-					<p id='pintro'>{{pinto}}
-						<span class='bold'>
-							{{brief}}
-						</span>
-					</p>
+				
 
-					{% if pf %}
-					<p id="descr">
-						It seems that on <span class="bold">{{timeDescr}}</span> the power went out at Luca's house. At that moment the percentage of the UPS battery of the server was {{percento}}
-					</p>
-					{% endif %}
-
-					{% if pr %}
-					<p id="descr">
-						It seems that on <span class="bold">{{timeDescr}}</span> the power is back at Luca's house. At that moment the percentage of the UPS battery of the server was {{percento}}
-					</p>
-					{% endif %}
-				</div>
 				<hr style="width: 70%;height: 1px;border-top: 1px solid lightgray !important;border: none;border-top-color: currentcolor;border-top-style: none;border-top-width: medium;">
 				<div class="footer">
 					<p>
