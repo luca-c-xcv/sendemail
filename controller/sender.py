@@ -41,7 +41,7 @@ class sender:
             self.__USER__ = config['SMTP']['user']
             self.__PSWD__ = config['SMTP']['password']
             self.__FROM__ = config['SMTP']['from']
-            self.__ulist__ = config['SMTP']['receivers'].split('\n')
+            self.__ulist__ = config['POWER']['receivers'].split('\n')
             self.__SUBJECT__ = SUBJECT
 
 

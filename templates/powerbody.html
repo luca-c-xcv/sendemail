@@ -17,4 +17,10 @@
             It seems that on <span class="bold">{{timeDescr}}</span> the power is back at Luca's house. At that moment the percentage of the UPS battery of the server was {{percento}}
         </p>
     {% endif %}
+
+    {% if pk %}
+        <p id="descr">
+            Unfortunately the power is not back yet and the battery of the UPS is running out. To avoid problems or damages the server will be turned off in a few moments.
+        </p>
+    {% endif %}
 </div>
