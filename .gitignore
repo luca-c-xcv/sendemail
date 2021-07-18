@@ -2,3 +2,5 @@ SMTP
 .idea
 __pycache__
 test.ini
+sendemail.zip
+sendemail_v2.0
