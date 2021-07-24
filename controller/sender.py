@@ -9,7 +9,6 @@ from email.mime.text import MIMEText
 
 app = sys.modules['__main__']
 CONFIG = os.path.dirname( app.__file__ ) + '/config.ini'
-print( CONFIG)
 
 class sender:
     __FROM__ = None
@@ -22,7 +21,7 @@ class sender:
     __ulist__ = []
 
 
-    def __init__(self, test, SUBJECT):
+    def __init__(self, test, SUBJECT, type):
         if( test ):
             config = configparser.ConfigParser()
             config.read(CONFIG)
@@ -33,17 +32,26 @@ class sender:
             self.__FROM__ = config['TEST']['from']
             self.__ulist__ = config['TEST']['receivers'].split('\n')
             self.__SUBJECT__ = SUBJECT
-        else:
+        elif( type == 'power' ):
             config = configparser.ConfigParser()
             config.read( CONFIG )
             self.__SERVER__ = config['SMTP']['server']
             self.__PORT__ = config['SMTP']['port']
             self.__USER__ = config['SMTP']['user']
             self.__PSWD__ = config['SMTP']['password']
-            self.__FROM__ = config['SMTP']['from']
+            self.__FROM__ = config['POWER']['from']
             self.__ulist__ = config['POWER']['receivers'].split('\n')
             self.__SUBJECT__ = SUBJECT
-
+        elif( type == 'speed' ):
+            config = configparser.ConfigParser()
+            config.read(CONFIG)
+            self.__SERVER__ = config['SMTP']['server']
+            self.__PORT__ = config['SMTP']['port']
+            self.__USER__ = config['SMTP']['user']
+            self.__PSWD__ = config['SMTP']['password']
+            self.__FROM__ = config['SPEED']['from']
+            self.__ulist__ = config['SPEED']['receivers'].split('\n')
+            self.__SUBJECT__ = SUBJECT
 
 
     def send(self, template):

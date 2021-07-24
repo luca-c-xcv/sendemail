@@ -1,5 +1,7 @@
 import calendar
 import datetime
+import os
+
 from controller.power import power
 
 class powerfailure( power ):
@@ -22,8 +24,8 @@ class powerfailure( power ):
         year = str( datetime.date.today().year )
         hour = str( datetime.datetime.now().hour )
         min = str( datetime.datetime.now().minute )
-        #out = os.popen( "apcaccess | grep BCHARGE | cut -d : -f 2 | cut -d ' ' -f 2").read()
-        out = "100%" #TODO
+        out = os.popen( "apcaccess | grep BCHARGE | cut -d : -f 2 | cut -d ' ' -f 2").read()
+        # out = "100%" #TODO
 
 
         self.__descr__ = '%s, %s %s %s at %s:%s'%(wday, day, month, year, hour, min)

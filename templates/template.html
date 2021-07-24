@@ -37,7 +37,9 @@
 				{% if pf is defined or pr is defined or pk is defined %}
 					{% include 'powerbody.html' %}
 				{% endif %}
-
+				{% if st is defined %}
+					{% include 'speedtest.html' %}
+				{% endif %}
 				
 
 				<hr style="width: 70%;height: 1px;border-top: 1px solid lightgray !important;border: none;border-top-color: currentcolor;border-top-style: none;border-top-width: medium;">
